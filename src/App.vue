@@ -3,7 +3,6 @@
 </template>
 
 <script>
-
 export default {
     name: "App",
 };
@@ -100,5 +99,33 @@ h5,
 h6 {
     font-size: inherit;
     font-weight: inherit;
+}
+
+button {
+    border: 1px black solid;
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+}
+
+input {
+    border: 1px black solid;
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+textarea {
+    border: 1px black solid;
+    font-size: 16px;
+    width: 300px;
 }
 </style>

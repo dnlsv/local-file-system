@@ -87,16 +87,11 @@ export default {
 }
 
 .registration__header {
-    font-size: 24px;
     margin-bottom: 30px;
 }
 
 input {
-    border: 1px black solid;
-    width: 250px;
-    height: 25px;
     margin-bottom: 20px;
-    font-size: 16px;
 }
 
 .registration__text {

@@ -47,11 +47,13 @@ export default {
             };
 
             axios(config)
-                .then(function (response) {
+                .then((response) => {
                     console.log(JSON.stringify(response.data));
                     let token = response.data["value"];
                     document.cookie = "Auth-Token=" + token;
+                    document.cookie = "path=" + login + "/";
                     alert("Successful login");
+                    this.$router.push("/file");
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -71,16 +73,7 @@ export default {
 }
 
 .login__header {
-    font-size: 24px;
     margin-bottom: 30px;
-}
-
-input {
-    border: 1px black solid;
-    width: 250px;
-    height: 25px;
-    margin-bottom: 20px;
-    font-size: 16px;
 }
 
 .login__text {
@@ -89,5 +82,9 @@ input {
 
 .link {
     text-decoration: underline;
+}
+
+input {
+    margin-bottom: 20px;
 }
 </style>
