@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
@@ -30,20 +32,16 @@ export default {
     },
     methods: {
         loginFunc(login, password) {
-            const axios = require("axios");
-
-            let data = JSON.stringify({
-                login: login,
-                password: password,
-            });
-
             let config = {
                 method: "post",
                 url: "http://localhost:80/login",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: data,
+                data: {
+                    login: login,
+                    password: password,
+                },
             };
 
             axios(config)

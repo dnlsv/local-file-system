@@ -1,37 +1,28 @@
 <template>
     <div
         class="modal-shadow"
-        @click.self="$emit('close-get-file-content-window', oldName)"
+        @click.self="$emit('close-directory-info-window')"
     >
         <div class="modal">
             <div
                 class="modal-close"
-                @click="$emit('close-get-file-content-window', oldName)"
+                @click="$emit('close-directory-info-window')"
             >
                 &#10006;
             </div>
             <div class="modal-content">
-                <h3 class="modal-content__header">File content</h3>
+                <h3 class="modal-content__header">Direcotry Info</h3>
                 <input
                     type="text"
                     name="name"
-                    placeholder="File name"
+                    placeholder="Directory name"
                     v-model="name"
                 />
-                <textarea
-                    name="content"
-                    placeholder="Content"
-                    rows="10"
-                    v-model="content"
-                ></textarea>
                 <div class="button__content">
-                    <button
-                        class="save-button"
-                        @click="saveFile(name, content)"
-                    >
+                    <button class="save-button" @click="saveDirectory()">
                         Save
                     </button>
-                    <button class="delete-dutton" @click="deleteFile">
+                    <button class="delete-dutton" @click="deleteDirectory">
                         Delete
                     </button>
                 </div>
@@ -48,15 +39,19 @@ export default {
     data() {
         return {
             name: "",
-            content: "",
             oldName: "",
         };
     },
     methods: {
-        deleteFile() {
+        deleteDirectory() {
+            if (this.name == this.path.split("/")[0]) {
+                alert("You cannot delete the root directory");
+                return;
+            }
+
             let config = {
                 method: "post",
-                url: "http://localhost:80/files/delete-file",
+                url: "http://localhost:80/files/delete-directory",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: this.token,
@@ -69,52 +64,35 @@ export default {
             axios(config)
                 .then((response) => {
                     console.log(JSON.stringify(response.data));
-                    this.$emit("close-get-file-content-window", this.oldName);
+                    this.$emit("delete-directory-info", this.oldName);
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         },
-        saveFile(name, content) {
+        saveDirectory() {
+            if (this.name == this.path.split("/")[0]) {
+                alert("You cannot change the name of the root directory");
+                return;
+            }
+            
             let config = {
                 method: "post",
-                url: "http://localhost:80/files/edit-file",
+                url: "http://localhost:80/files/edit-directory",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: this.token,
                 },
                 data: {
                     path: this.path,
-                    name: name,
-                    content: content,
+                    name: this.name,
                 },
             };
 
             axios(config)
                 .then((response) => {
                     console.log(JSON.stringify(response.data));
-                    this.$emit("close-get-file-content-window", this.oldName);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
-        getFileContent() {
-            let config = {
-                method: "get",
-                url: "http://localhost:80/files/get-file-content",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: this.token,
-                },
-                params: {
-                    path: this.path,
-                },
-            };
-
-            axios(config)
-                .then((response) => {
-                    this.content = response.data.content;
+                    this.$emit("save-directory-info", this.oldName, this.name);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -122,19 +100,14 @@ export default {
         },
     },
     created() {
-        this.name = this.path.split("/")[this.path.split("/").length - 1];
+        this.name = this.path.split("/")[this.path.split("/").length - 2];
         this.oldName = this.name;
-        this.getFileContent();
     },
 };
 </script>
 
 <style scoped>
 input {
-    margin-bottom: 20px;
-}
-
-textarea {
     margin-bottom: 20px;
 }
 .save-button {

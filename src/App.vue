@@ -1,10 +1,16 @@
 <template>
+    <header-component> </header-component>
     <router-view />
 </template>
 
 <script>
+import HeaderComponent from "./components/HeaderComponent.vue";
+
 export default {
     name: "App",
+    components: {
+        HeaderComponent,
+    },
 };
 </script>
 
@@ -115,6 +121,10 @@ input {
     font-size: 16px;
 }
 
+h1 {
+    font-size: 28px;
+}
+
 h2 {
     font-size: 24px;
 }
@@ -127,5 +137,47 @@ textarea {
     border: 1px black solid;
     font-size: 16px;
     width: 300px;
+}
+
+.modal-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.39);
+}
+
+.modal {
+    background: #fff;
+    padding: 15px;
+    min-width: 420px;
+    max-width: 480px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    padding: 3px;
+}
+
+.modal-close:hover {
+    background: #d4d1d1;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content__header {
+    margin-bottom: 30px;
 }
 </style>

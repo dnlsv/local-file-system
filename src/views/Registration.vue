@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
@@ -44,22 +46,18 @@ export default {
     },
     methods: {
         registration(firstName, lastName, login, password) {
-            const axios = require("axios");
-
-            let data = JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                login: login,
-                password: password,
-            });
-
             let config = {
                 method: "post",
                 url: "http://localhost:80/registration",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                data: data,
+                data: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    login: login,
+                    password: password,
+                },
             };
 
             axios(config)
