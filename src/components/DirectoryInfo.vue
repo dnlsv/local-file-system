@@ -68,6 +68,8 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
+                    let message = error.response.data["message"];
+                    alert(message);
                 });
         },
         saveDirectory() {
@@ -96,6 +98,8 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
+                    let message = error.response.data["message"];
+                    alert(message);
                 });
         },
     },

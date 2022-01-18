@@ -50,12 +50,13 @@ export default {
                     let token = response.data["value"];
                     document.cookie = "Auth-Token=" + token;
                     document.cookie = "path=" + login + "/";
-                    alert("Successful login");
+                    alert("Successful login!");
                     this.$router.push("/file");
                 })
                 .catch(function (error) {
                     console.log(error);
-                    alert("Login or password is incorrect");
+                    let message = error.response.data["message"];
+                    alert(message);
                 });
         },
     },

@@ -73,6 +73,8 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
+                    let message = error.response.data["message"];
+                    alert(message);
                 });
         },
         saveFile(name, content) {
@@ -97,6 +99,8 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
+                    let message = error.response.data["message"];
+                    alert(message);
                 });
         },
         getFileContent() {
@@ -118,6 +122,8 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
+                    let message = error.response.data["message"];
+                    alert(message);
                 });
         },
     },

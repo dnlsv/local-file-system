@@ -182,8 +182,11 @@ export default {
                         );
                     });
                 })
-                .catch(function (error) {
+                .catch((error) => {
                     console.log(error);
+                    let message = error.response.data["message"];
+                    alert(message);
+                    this.$router.push("/");
                 });
         },
         logOff() {

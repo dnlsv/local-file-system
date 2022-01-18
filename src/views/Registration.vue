@@ -69,7 +69,8 @@ export default {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    alert("Login already exists");
+                    let message = error.response.data["message"];
+                    alert(message);
                 });
         },
     },

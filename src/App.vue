@@ -107,6 +107,8 @@ h6 {
     font-weight: inherit;
 }
 
+/*--------------------------*/
+
 button {
     border: 1px black solid;
     width: 250px;
