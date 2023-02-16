@@ -1,4 +1,4 @@
-# remote-file-system-frontend
+# remote-file-system
 
 ## Project setup
 ```
