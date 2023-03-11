@@ -77,7 +77,7 @@ export default {
                 alert("You cannot change the name of the root directory");
                 return;
             }
-            
+
             let config = {
                 method: "post",
                 url: "http://localhost:80/files/edit-directory",

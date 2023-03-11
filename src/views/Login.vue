@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .login-wrapper {
     padding: 20px 0px;
     display: flex;

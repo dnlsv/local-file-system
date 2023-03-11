@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style scoped>
 .registration-wrapper {
     padding: 20px 0px;
     display: flex;
